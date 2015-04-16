@@ -1,0 +1,6 @@
+*.pdf
+*.dvi
+*.pdf*
+*.eps*
+*.log
+.*swp

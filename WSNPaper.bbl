@@ -1,0 +1,77 @@
+\begin{thebibliography}{10}
+
+\bibitem{hmac}
+B.~Srikanth, M.~Harish, and R.~Bhattacharjee, ``An energy efficient hybrid mac
+  protocol for wsn containing mobile nodes,'' in {\em Information,
+  Communications and Signal Processing (ICICS) 2011 8th International
+  Conference on}, pp.~1--5, IEEE, 2011.
+
+\bibitem{mobileMACSurvey}
+Q.~Dong and W.~Dargie, ``A survey on mobility and mobility-aware mac protocols
+  in wireless sensor networks,'' {\em Communications Surveys \& Tutorials,
+  IEEE}, vol.~15, no.~1, pp.~88--100, 2013.
+
+\bibitem{mobModelsSurvey}
+T.~Camp, J.~Boleng, and V.~Davies, ``A survey of mobility models for ad hoc
+  network research,'' {\em Wireless communications and mobile computing},
+  vol.~2, no.~5, pp.~483--502, 2002.
+
+\bibitem{aodv}
+S.~R. Das, E.~M. Belding-Royer, and C.~E. Perkins, ``Ad hoc on-demand distance
+  vector (aodv) routing,'' 2003.
+
+\bibitem{eeff_q}
+G.~J. Pottie and W.~J. Kaiser, ``Wireless integrated network sensors,'' {\em
+  Communications of the ACM}, vol.~43, no.~5, pp.~51--58, 2000.
+
+\bibitem{eeff_tech}
+G.~Anastasi, M.~Conti, M.~Di~Francesco, and A.~Passarella, ``How to prolong the
+  lifetime of wireless sensor networks,'' 2006.
+
+\bibitem{ms-mac}
+H.~Pham and S.~Jha, ``An adaptive mobility-aware mac protocol for sensor
+  networks (ms-mac),'' in {\em Mobile Ad-hoc and Sensor Systems, 2004 IEEE
+  International Conference on}, pp.~558--560, IEEE, 2004.
+
+\bibitem{smac}
+W.~Ye, J.~Heidemann, and D.~Estrin, ``An energy-efficient mac protocol for
+  wireless sensor networks,'' in {\em INFOCOM 2002. Twenty-First Annual Joint
+  Conference of the IEEE Computer and Communications Societies. Proceedings.
+  IEEE}, vol.~3, pp.~1567--1576, IEEE, 2002.
+
+\bibitem{m-mac}
+M.~Ali, T.~Suleman, and Z.~A. Uzmi, ``Mmac: A mobility-adaptive, collision-free
+  mac protocol for wireless sensor networks,'' in {\em Performance, Computing,
+  and Communications Conference, 2005. IPCCC 2005. 24th IEEE International},
+  pp.~401--407, IEEE, 2005.
+
+\bibitem{m-tdma}
+A.~Jhumka and S.~Kulkarni, ``On the design of mobility-tolerant tdma-based
+  media access control (mac) protocol for mobile sensor networks,'' in {\em
+  Distributed Computing and Internet Technology}, pp.~42--53, Springer, 2007.
+
+\bibitem{floc}
+M.~Demirbas, A.~Arora, V.~Mittal, and V.~Kulathumani, ``A fault-local
+  self-stabilizing clustering service for wireless ad hoc networks,'' {\em
+  Parallel and Distributed Systems, IEEE Transactions on}, vol.~17, no.~9,
+  pp.~912--922, 2006.
+
+\bibitem{ma-mac}
+T.~Zhiyong and W.~Dargie, ``A mobility-aware medium access control protocol for
+  wireless sensor networks,'' in {\em GLOBECOM Workshops (GC Wkshps), 2010
+  IEEE}, pp.~109--114, IEEE, 2010.
+
+\bibitem{mobisense}
+A.~Gonga, O.~Landsiedel, and M.~Johansson, ``Mobisense: Power-efficient
+  micro-mobility in wireless sensor networks,'' in {\em Distributed Computing
+  in Sensor Systems and Workshops (DCOSS), 2011 International Conference on},
+  pp.~1--8, IEEE, 2011.
+
+\bibitem{mc-mac}
+M.~Nabi, M.~Blagojevic, M.~Geilen, T.~Basten, and T.~Hendriks, ``Mcmac: An
+  optimized medium access control protocol for mobile clusters in wireless
+  sensor networks,'' in {\em Sensor Mesh and Ad Hoc Communications and Networks
+  (SECON), 2010 7th Annual IEEE Communications Society Conference on},
+  pp.~1--9, IEEE, 2010.
+
+\end{thebibliography}
