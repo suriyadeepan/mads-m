@@ -79,6 +79,7 @@ Mobile MAC, Dynamic TDMA, Mobile WSN
 
 % ---------------------------------------------------------------- %
 \section{Introduction}
+\label{intro}
 --- (First para) Introduction  WSN - Limitations of Sensor nodes- About power consumptions - About Mobile WSN - How Mobile WSN influence the current research and application.- Why protocol used in M WSN are complex than static sensor nodes (one line is enough). ---\\ \\
 
 %A para about the mobility and the classification \\ \\
@@ -94,10 +95,11 @@ Mobility can also be classified in terms of control over motion, into (i) Contro
 In our approach, each static node maintains a schedule for servicing the mobile neighbours (1 hop neighbours). This schedule is dynamically adapted based on the mobility of current neighbours. The schedule can be roughly divided into three phases : (i) Static phase (ii) Dynamic phase and (iii) Routing phase. The objective of the static phase is basically mannagement of mobile nodes. The submodules involved in this phase are synchronization, data requests and scheduling. No changes are made to the static phase ever. At the end of the static phase, the mobile nodes are aware of data slots alloted to them for data transfer with the corresponding static node. The dynamic phase involves the actual data transfer, where the mobiles nodes wake up during their respective data slot, receive \emph{data request} and reply to the static node with \emph{data reply} message. The last phase is the routing phase, where the static node forwards the aggregated data from its mobile neighbours, to its one hop static neighbour. AODV routing mechanism \cite{aodv} is followed to route data to the basestation.\\\\
 
 %A index para about the other section. \\ \\
-The paper is organized as follows: Section I introduces the problem statement along with the assumptions made. The proposed approach is explained in detail in Section II. Comparison of our approach with \cite{hmac} is done in Section III. The simulation results are provied in Section IV. 
+The paper is organized as follows: \ref{prob_def} introduces the problem statement along with the assumptions made. Background study of existing mobility-aware MAC protocols is presented in \ref{bg}. The proposed approach is explained in detail in \ref{algo}. Comparison of our approach with hybrid MAC\cite{hmac} is done and the simulation results are provided in \ref{sim}. 
 
 % ---------------------------------------------------------------- %
 \section{Problem Definition with Assumptions}
+\label{prob_def}
 Accomodating mobile sensor nodes in the sensor network introduces a few challenges for the network protocol designers. Due to the rapid movement of mobile nodes, the topology of the entire network changes every instant. Designing a MAC and/or routing protocol for a network with dynamic topology is a challenging task. An efficient routing algorithm in this case, essentially requires efficient medium access, with minimum packet loss. Contention based algorithms increase the network overhead and also the probability of collision is high. Hence, this scenario requires a TDMA based MAC protocol which dynamically adapts to the changes in the mobile node traffic in the neighbourhood.  % network traffic?
 % ---------------------------------------------------------------- %
 
@@ -110,7 +112,9 @@ The assumptions made in this paper are listed below:
 % ---------------------------------------------------------------- %
 
 % ---------------------------------------------------------------- %
+
 \section{Background}
+\label{bg}
 %Para on importance of energy efficiency. \\ \\
 The sensor nodes used in wireless sensor network are usually powered by low cost batteries and are not easily replaceable. In most WSN scenarios, manual human intervention is impossible due to hazardous/radioactive or unaccessible environment or both. Hence, manual replacements of batteries is not practical. This makes Energy Efficiency the number one concern for any network protocol design in WSN. A sensor node spends most of its energy in transmitting, receiving or listening to transmission. The energy cost of transmitting a single bit of information is approximately the same as that needed for processing a thousand operations in a typical sensor node \cite{eeff_q}. \\
 
@@ -147,25 +151,30 @@ We propose a MAC protocol that uses dynamic scheduling to handle the mobile node
 
 % ---------------------------------------------------------------- %
 \section{Algorithm}
+\label{algo}
 
 Each frame in our approach is divided into 4 phases. They are (i) Discovery Request Phase (ii) Discovery Reply Phase (iii) Schedule phase and (iv) Data phase. Each of these 4 phases is explained clearly in the following sections:
 
 \subsection{Discovery Request Phase}
+\label{disc_req_phase}
 During the start of the frame, the cluster head broadcasts a discovery request packet \emph{disc\_req}. The discovery request packet is an advertisement message broadcasted by the cluster head to inform the mobile nodes in the neighbourhood about the cluster. This message contains valuable information regarding the cluster including cluster size and remaining energy. Also, a mobile node receiving this message can estimate the approximate distance between the cluster head and itself, based on the RSSI value acquired from the radio message. It is possible that a mobile node may receive more than one disc\_req message from more than one cluster head. In that case, the mobile node chooses a cluster based on the current cluster size, remaining energy of the cluster head and the distance between the cluster head and itself. 
 
 \subsection{Discovery Reply Phase}
+\label{disc_rep_phase}
 The Discovery Reply Phase consists of a finite number of slots during which the cluster head listens for Discovery Reply packets \emph{disc\_rep} from the mobile nodes. The mobile node, after choosing a cluster to join, wakes up during a random slot in the Discovery Reply slots and sends a \emph{disc\_rep} packet to the cluster head. The slot selection as mentioned above, is randomly done by the mobile node. The maximum number of these slots is \emph{x} which depends on the node density in the network. The calculation of \emph{x} is explained in section ??
 
 \subsection{Schedule Phase}
+\label{sched_phase}
 Based on the \emph{disc\_req} packets received in the previous section, the cluster head builds a schedule for the mobile nodes to communicate with it. The order of frame access to nodes in this schedule is based on the order of reception of \emph{disc\_rep} packets. The schedule is broadcasted by the cluster head during this phase. It should be noted that any node which issued a join request in this round should be in listen mode during this phase, to receive the schedule packet. 
 
 \subsection{Data Phase}
+\label{data_phase}
 
 From the schedule message, each mobile node acquires its data slot for communication with the cluster head. The data phase is divided into pairs of \emph{data\_req} and \emph{data\_rep} slots. Each pair serves one mobile node. When a mobile node wakes up during its data slot, it receives a \emph{data\_req} message from the cluster head. The cluster head embeds a time value \emph{$t_1$} in this message, which represents a time in the future (next frame) when the corresponding mobile node should wake up for the next data transfer session. The mobile node after receiving this message sends a \emph{data\_rep} message to the cluster head, set a timer to wake up after \emph{$t_1$} seconds and puts the radio in sleep mode. \\\\
 
 To understand our approach, lets consider the scenario depicted in figure ??. There are two clusters $C_1$ and $C_2$. Each cluster consists of a few mobile nodes and a cluster head (CH$_1$,CH$_2$). Notice that node \emph{$N_4$} moves from $C_1$ to $C_2$. The steps involved in node $N_4$ leaving cluster $C_1$ and joing $C_2$ are mentioned in the following section: \\
 
-When N4 moves out of the range of CH$_1$, it stops receiving the periodic data request message from CH$_1$. Realizing that it has moved out of cluster $C_1$, N4 switches its radio to listen mode, listening for \emph{disc\_req} packet from other cluster heads. After waiting a while, it receives a \emph{disc\_req} message from CH$_2$ as shown in figure ??. N4 chooses one of the slots in the discovery reply phase to send a \emph{disc\_rep} packet. CH$_2$ adds N4 to the schedule and broadcast the schedule. N4 acquires its data transfer slot timing from the schedule. During its slot, N4 wakes up to receive \emph{data\_req} packet from CH$_2$ and replies to it with a \emph{data\_rep} packet. From the next next data transfer session schedule acquired from the \emph{data\_req} packet, N4 sets a timer and put its radio in sleep mode. 
+When N4 moves out of the range of CH$_1$, it stops receiving the periodic data request message from CH$_1$. Realizing that it has moved out of cluster $C_1$, N4 switches its radio to listen mode, listening for \emph{disc\_req} packet from other cluster heads. After waiting a while, it receives a \emph{disc\_req} message from CH$_2$ as shown in figure ??. N4 chooses one of the slots in the discovery reply phase to send a \emph{disc\_rep} packet. CH$_2$ adds N4 to the schedule and broadcast the schedule. N4 acquires its data transfer slot timing from the schedule. During its slot, N4 wakes up to receive \emph{data\_req} packet from CH$_2$ and replies to it with a \emph{data\_rep} packet. Using the next data transfer session schedule acquired from the \emph{data\_req} packet, N4 sets a timer and puts its radio in sleep mode. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \iffalse 
@@ -192,6 +201,7 @@ Sample Algorithm
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulation and Results}
+\label{sim}
 stuff thangs.. stuff thangs..
 stuff thangs.. stuff thangs..
 % ------------------------------------------------------- %
@@ -202,6 +212,7 @@ Comparison to be done with Hybrid MAC and Mobi Sense
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
+\label{conclusion}
 This paper proposes a TDMA based MAC protocol for Mobile Wireless Sensor Networks. The primary goal of the approach is to increase the sleep time of mobile nodes, there by increasing their lifetime. The use of Data Request message improves the reliability of the data transfer and also informs the mobile node about its data transfer slot during the next round. The implementation of D-TDMA is done in Castalia Simulator. We have compared our results with that of \cite{hmac} and observed that our approach performs better in terms of scalability, throughput, packet delivery ratio and energy efficiency.
 
 \bibliographystyle{ieeetr}
