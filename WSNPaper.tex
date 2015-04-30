@@ -16,7 +16,7 @@
 %\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
 \iffalse
 \ifCLASSINFOpdf
-   \usepackage[pdftex]{graphicx}
+   \usepackage[pdftex]{graphicx} 
 %       	\usepackage{subfloat}
   % declare the path(s) where your graphic files are
 %   \graphicspath{{../eps/}}
@@ -66,7 +66,7 @@ Email IDs: \{auth1$^1$, auth2$^1$, auth3$^2$, auth4$^1$\}@goa.bits-pilani.ac.in}
 \maketitle
 
 \begin{abstract}
-	In this paper, we propose a medium access protocol for Mobile Wireless Sensor Network which uses dynamic scheduling. In this paper, we have considered a mixed deployment of both mobile and static wireless sensor nodes. The static nodes maintain a local schedule to service the mobile neighbours and also route data to the basestation. The design goals of our MAC are energy efficiency and low packet loss through reliable data transfer. The request-reply mechanism for data transfer, used in our approach, also smoothens the handover process. We have compared our approach with Hybrid MAC \cite{hmac}. The simulation results indicate that our approach performs betters in terms of scalability, reliability and throughput.%handoff?
+	In this paper, we propose a medium access protocol for Mobile Wireless Sensor Network which uses dynamic scheduling. In this paper, we have considered a mixed deployment of both mobile and static wireless sensor nodes. The static nodes maintain a local schedule to service the mobile neighbours and also route data to the base-station. The design goals of our MAC are energy efficiency and low packet loss through reliable data transfer. The request-reply mechanism for data transfer, used in our approach, also smoothens the handover process. We have compared our approach with Hybrid MAC \cite{hmac}. The simulation results indicate that our approach performs betters in terms of scalability, reliability and throughput.%handoff?
 
 %- Need for M-MAC.- Problems in designing MAC.- Introduce D TDMA- 3 ot 4 lines about D-TDMA. - About comparison with Hybrid MAC.
 \end{abstract}
@@ -82,49 +82,54 @@ Mobile MAC, Dynamic TDMA, Mobile WSN
 \label{intro}
 --- (First para) Introduction  WSN - Limitations of Sensor nodes- About power consumptions - About Mobile WSN - How Mobile WSN influence the current research and application.- Why protocol used in M WSN are complex than static sensor nodes (one line is enough). ---\\ \\
 
-%A para about the mobility and the classification \\ \\
-In order to design protocols to support mobility of nodes, we need to understand the existing mobility patterns and try to mimic the same in a simulation environment, as well as use the patterns observed in the real deployment scenario to improve the performance of the network. Mobility pattern is the pattern of movement of an object or a person or an animal in space. It is classified \cite{mobileMACSurvey} into (i) Pedestrian Mobility pattern, (ii) Vehicular Mobility pattern and (iii) Dynamic Medium Mobility pattern. A Mobility model, on the other hand, is a mathematical model representing a mobility pattern of an object or a person or an animal in space. Mobility model can be broadly classified into Group mobility and Entity mobility models. The most famous Entity mobility models are Random Walk, Random Waypoint and Random Direction mobility models \cite{mobModelsSurvey}. Some well-known Group mobility models are Reference Group Mobility, Column Mobility and Nomadic Community Mobility models. These mobility models try to mimic the real-life movement of wild-life, vehicles, pedestrian, etc, as an individual and as a group, in a general way.\\ 
+%A para about the mobility and the classification - Applications in Mobile WSN\\ \\
 
-Mobility can also be classified in terms of control over motion, into (i) Controlled mobility and (ii) Uncontrolled mobility. Controlled mobility involves the use of mobile robots equipped with sensors and radio, which are programmed to move, sense/collect data and route information, in the sensor network. There are numerous advantages of using mobile robots in a sensor network. Some applications of mobile robots in WSN are area exploration, as data mules, mobile basestation and static node localization. Some scenarios where uncontrolled mobility comes into the picture are target tracking where sensor nodes are attached to vehicle or animal body for tracking. Another case is where sensor nodes are attached to patients in hospitals for monitoring vitals.\\
+%In order to design protocols to support mobility of nodes, we need to understand the existing mobility patterns and try to mimic the same in a simulation environment, as well as use the patterns observed in the real deployment scenario to improve the performance of the network.%
+
+%one to two line on Mobility in WSN 
+
+ Mobility pattern is the pattern of movement of an object or a person or an animal in space. It is classified \cite{mobileMACSurvey} into (i) Pedestrian Mobility pattern, (ii) Vehicular Mobility pattern and (iii) Dynamic Medium Mobility pattern.  A Mobility model, on the other hand, is a mathematical model representing a mobility pattern of an object or a person or an animal in space. Mobility model can be broadly classified into Group mobility and Entity mobility models. The most famous Entity mobility models are Random Walk, Random Way-point and Random Direction mobility models \cite{mobModelsSurvey}. Some well-known Group mobility models are Reference Group Mobility, Column Mobility and Nomadic Community Mobility models. These mobility models try to mimic the real-life movement of wild-life, vehicles, pedestrian, etc, as an individual and as a group, in a general way.\\ 
+
+Mobility can also be classified in terms of control over motion, into (i) Controlled mobility and (ii) Uncontrolled mobility. Controlled mobility involves the use of mobile robots equipped with sensors and radio, which are programmed to move, sense/collect data and route information, in the sensor network. There are numerous advantages of using mobile robots in a sensor network. Some applications of mobile robots in WSN are area exploration, as data mules, mobile base-station and static node localization. Some scenarios where uncontrolled mobility comes into the picture are target tracking where sensor nodes are attached to vehicle or animal body for tracking. Another case is where sensor nodes are attached to patients in hospitals for monitoring vitals.\\
 
 
-%--- A para about the need for new protocols for mobile WSN. --- \\ \\
+%--- A para about the need for new protocols for mobile WSN. --- \\ \\ 
+Why can't we use the existing protocol used in static WSN or in MANET. Limitations. - dynamic topology - Energy - Number of messages - etc.
 
 %--- A para about the importance of MAC protocol in Mobile WSN --- \\ \\
-MAC protocol design plays a vital role in handling mobile nodes in the network. The link layer should make use of the mobility parameters of a node and its neighbours, such as velocity, trajectory and future locations, for achieving effective data communication with multiple neighbour nodes. By carefully monitoring the said parameters, the MAC protocol can effectively adapt the transmission, reception and sleep timings, to tolerate dynamic topology changes and improve energy efficiency. This is especially true in case of a schedule based MAC, where communication with neighbours is multiplexed and the slot allocation for each neighbour can be dynamically adapted based on the mobility information about the neighbours. By estimating the future location of a neighbour based on its current velocity, a node can dynamically adjust its data rate to complete the data transfer with the neighbour node. Most mobility-aware MAC approaches support seamless handover. When two nodes involved in data transfer move away from each other, a seamless handover mechanism is necessary to choose a new receiver without interrupting the current communication.\\
+MAC protocol design plays a vital role in handling mobile nodes in the network. {\color{red} The link layer should make use of the mobility parameters of a node and its neighbours, such as velocity, trajectory and future locations, for achieving effective data communication with multiple neighbour nodes.} By carefully monitoring the said parameters, the MAC protocol can effectively adapt the transmission, reception and sleep timings, to tolerate dynamic topology changes and improve energy efficiency. This is especially true in case of a schedule based MAC, where communication with neighbours is multiplexed and the slot allocation for each neighbour can be dynamically adapted based on the mobility information about the neighbours. By estimating the future location of a neighbour based on its current velocity, a node can dynamically adjust its data rate to complete the data transfer with the neighbour node. { \color{red} Most mobility-aware MAC approaches in wireless network support seamless handover.} When two nodes involved in data transfer move away from each other, a seamless handover mechanism is necessary to choose a new receiver without interrupting the current communication.\\
 
 %A para (in abstract level) about our approach. \\ \\
-In our approach, each static node maintains a schedule for servicing the mobile neighbours (1 hop neighbours). This schedule is dynamically adapted based on the mobility of current neighbours. The schedule can be roughly divided into three phases : (i) Static phase (ii) Dynamic phase and (iii) Routing phase. The objective of the static phase is basically mannagement of mobile nodes. The submodules involved in this phase are synchronization, data requests and scheduling. No changes are made to the static phase ever. At the end of the static phase, the mobile nodes are aware of data slots alloted to them for data transfer with the corresponding static node. The dynamic phase involves the actual data transfer, where the mobiles nodes wake up during their respective data slot, receive \emph{data request} and reply to the static node with \emph{data reply} message. The last phase is the routing phase, where the static node forwards the aggregated data from its mobile neighbours, to its one hop static neighbour. AODV routing mechanism \cite{aodv} is followed to route data to the basestation.\\\\
+In our approach, each static node maintains a schedule for servicing the mobile neighbours (1 hop neighbours). This schedule is dynamically adapted based on the mobility of current neighbours. The schedule can be roughly divided into three phases :\emph{(i) Static phase (ii) Dynamic phase} and \emph{(iii) Routing phase}. The objective of the static phase is basically management of mobile nodes. The sub modules involved in this phase are \emph{synchronization, data requests} and \emph{scheduling}.{\color{red} No changes are made to the static phase ever.} At the end of the static phase, the mobile nodes are aware of data slots alloted to them for data transfer with the corresponding static node. The dynamic phase involves the actual data transfer, where the mobiles nodes wake up during their respective data slot, receive \emph{data request} and reply to the static node with \emph{data reply} message. The last phase is the routing phase, where the static node forwards the aggregated data from its mobile neighbours, to its one hop static neighbour. AODV routing mechanism \cite{aodv} is followed to route data to the basestation.\\\\
+
+%No need to mention routing phase - at least in Introduction. Talk only about static and dynamic -better rename to allocation phase and data phase.
+
+
 
 %A index para about the other section. \\ \\
 The paper is organized as follows: \ref{prob_def} introduces the problem statement along with the assumptions made. Background study of existing mobility-aware MAC protocols is presented in \ref{bg}. The proposed approach is explained in detail in \ref{algo}. Comparison of our approach with hybrid MAC\cite{hmac} is done and the simulation results are provided in \ref{sim}. 
 
-% ---------------------------------------------------------------- %
-\section{Problem Definition with Assumptions}
-\label{prob_def}
-Accomodating mobile sensor nodes in the sensor network introduces a few challenges for the network protocol designers. Due to the rapid movement of mobile nodes, the topology of the entire network changes every instant. Designing a MAC and/or routing protocol for a network with dynamic topology is a challenging task. An efficient routing algorithm in this case, essentially requires efficient medium access, with minimum packet loss. Contention based algorithms increase the network overhead and also the probability of collision is high. Hence, this scenario requires a TDMA based MAC protocol which dynamically adapts to the changes in the mobile node traffic in the neighbourhood.  \\% network traffic?
-% ---------------------------------------------------------------- %
 
-The assumptions made in this paper are listed below:
-\begin{itemize}
-	\item A dense grid deployment of static nodes is available for routing data
-	\item The static nodes possess the ability to aggregate data before forwarding to the basestation
-	\item The communication radius of static and mobile nodes are predetermined and constant
-\end{itemize}
-% ---------------------------------------------------------------- %
 
 % ---------------------------------------------------------------- %
 
 \section{Background}
 \label{bg}
+
+%Para on Mobility in WSN . Then Important challanges ( energy can be one of the challenges)
+
 %Para on importance of energy efficiency. \\ \\
-The sensor nodes used in wireless sensor network are usually powered by low cost batteries and are not easily replaceable. In most WSN scenarios, manual human intervention is impossible due to hazardous/radioactive or unaccessible environment or both. Hence, manual replacements of batteries is not practical. This makes Energy Efficiency the number one concern for any network protocol design in WSN. A sensor node spends most of its energy in transmitting, receiving or listening to transmission. The energy cost of transmitting a single bit of information is approximately the same as that needed for processing a thousand operations in a typical sensor node \cite{eeff_q}. \\
+The sensor nodes used in wireless sensor network are usually powered by batteries and are not easily replaceable. In most WSN applications, manual human intervention is impossible due to hazardous or remote environment and hence replacing the battery is impractical. This makes energy efficiency the number one concern for any network protocol design in WSN. A sensor node spends most of its energy in its communication. The energy cost of transmitting a single bit of information is approximately the same as that needed for processing a thousand operations in a typical sensor node \cite{eeff_q}. \\
 
 %Para on how energy efficiency can be incoperated w.r.t to the protocol selection. eg: TDMA based MAC and cluster based routing will help in reducting the communication complexities and hence reduce the energy. \\ \\
+
+%rearrangment of lines in this para is needed.
 In order to reduce the energy consumption, nodes must be in sleep state as much as possible. There are various techniques employed for this purpose \cite{eeff_tech}. Duty cycling is a well-known technique which achieves good results in terms of power consumption. The main objective of duty cycling is to increase overall node sleep time by keeping the absolute minimum number of nodes awake at a time, in order to maintain network connectivity. Collision avoidance is another way to make sure that energy is not wasted on resending packets which failed due to collision. \emph{Contention-based} techniques make use of virtual and physical carrier sensing to avoid collision. But the problem with these techniques is high network overhead, leading to increased energy consumption. On the other hand, \emph{Schedule-based} protocols are highly energy efficient and also very successful in avoiding collision. \\
 
-There are a number of MAC protocols available for WSN that support mobility. Each of these protocols is specially designed to support a specific type of mobility pattern encountered in a specific real life WSN scenario. In the following subsections, we briefly discuss the existing Mobility-aware MAC protocols for WSN.\\
+There are a number of MAC protocols available for WSN that support mobility. Each of these protocols is specially designed to support a specific type of mobility pattern encountered in a specific real life WSN scenario. { \color{red} In the following subsections, we briefly discuss the existing Mobility-aware MAC protocols for WSN.\\}
 
+
+{ \color{blue}
 \subsection{MS-MAC}
 %--- A para on current MAC protocol available. Classify them as Schedule based and contention based protocol. Why Schedule based protocol are better? Advantage of TDMA based protocols. --- \\ \\
  MS-MAC \cite{ms-mac} is a derivative of SMAC \cite{smac}, extended to support mobility. SMAC makes use of duty cycling to increase the sleep time of each node. This sleep/wake schedule is not global. In fact, SMAC organizes the network into virtual clusters, where nodes which possess a common schedule are grouped together as a cluster. The mobility information of each nodes is observed by the other nodes in the cluster. Based on the variation in the RSSI value of a mobile node, inter-cluster mobility of the node is detected by the cluster members. The cluster members then, form an active zone for a period of time, during with they adjust their synchronization frequency to support the mobile node in reaching the new cluster without losing connection to all its neighbours. \\\\
@@ -133,17 +138,20 @@ There are a number of MAC protocols available for WSN that support mobility. Eac
 M-MAC \cite{m-mac} is a scheduling based MAC protocol that employs a flexible frame time to adapt to mobility. Each round is divided into \emph{k} frames. During each frame, every node predicts its own location estimate for the next frame. This estimate is transmitted to the cluster head. The cluster head gathers the location information from each node, aggregates it and broadcasts it during the last slot of the current frame. This information provides the nodes in the cluster the knowledge of the mobility states of the cluster members, based on which a node chooses one of its neighbours to relay the data packets.
 
 \subsection{M-TDMA}
-M-TDMA \cite{m-tdma} partitions the network into non-overlapping clusters based on FLOC algorithm\cite{floc}. Each cluster maintains a frame where a unique slot is provided for each cluster member. The slots are divided into control, data and reserved slots. The reserved slots are reserved for join requests from new nodes entering the cluster and message retransmissions. The control slots are divided to accomodate cluster information, node information and slot assignment. 
+M-TDMA \cite{m-tdma} partitions the network into non-overlapping clusters based on FLOC algorithm\cite{floc}. Each cluster maintains a frame where a unique slot is provided for each cluster member. The slots are divided into control, data and reserved slots. The reserved slots are reserved for join requests from new nodes entering the cluster and message retransmissions. The control slots are divided to accommodate cluster information, node information and slot assignment. 
 
 \subsection{MA-MAC}
 MA-MAC \cite{ma-mac} is a contention based protocol that primarily focusses on reliability of data transfer through seamless handover by adopting two distance thresholds. A sender \emph{$S_1$} initiates communication by transmitting a preamble packet to a receiver \emph{$R_1$}. When the receiver replies with an ACK message, the sender continues sending data packets. Over a period of time, the sender accumulates enough history RSSI values from the ACK packets sent by \emph{$R_1$}. At this point of time, it estimates its distance to the receiver. \emph{$S_1$} monitor this distance to see if it exceeds the distance threshold. When it exceeds the first threshold, \emph{$S_1$} starts embedding handover requests with the data packets, which it is broadcasting now. When another node \emph{$R_2$} receives this handover request, it replies with a handover reply. Now \emph{$S_1$} starts unicasting the data packets to \emph{$R_2$} instead of \emph{$R_1$}.  
  
 \subsection{Mobisense}
-Mobisense \cite{mobisense} is a cross-layer architecture designed for micro-mobility scenarios. It assumes existence of a backbone static network which helps in routing data to the basestation. Each of the static nodes in the network act as a cluster head. Each cluster head operates in a different channel, maintains a cluster of mobile nodes, supports uplink and downlink transmission to and from the basestation. The super-frame is divided into Synchronization, Downlink and Uplink phase, access mini-slots and a discovery slot. During the discovery slot, the cluster head uses a common channel to  advertise information about the cluster. Any mobile node entering the cluster will collect information about the cluster and will send a join request during the access mini-slot. The cluster head adds the new mobile node to the cluster and adapts the schedule for downlink and uplink transmissions and broadcast the schedule information during the synchronization slot.  
+Mobisense \cite{mobisense} is a cross-layer architecture designed for micro-mobility scenarios. It assumes existence of a backbone static network which helps in routing data to the base-station. Each of the static nodes in the network act as a cluster head. Each cluster head operates in a different channel, maintains a cluster of mobile nodes, supports uplink and downlink transmission to and from the base-station. The super-frame is divided into Synchronization, Downlink and Uplink phase, access mini-slots and a discovery slot. During the discovery slot, the cluster head uses a common channel to  advertise information about the cluster. Any mobile node entering the cluster will collect information about the cluster and will send a join request during the access mini-slot. The cluster head adds the new mobile node to the cluster and adapts the schedule for downlink and uplink transmissions and broadcast the schedule information during the synchronization slot.  
 
 \subsection{MC-MAC}
 --- Write something about \cite{mc-mac} ---\\ \\
 
+} 
+
+%Converge the "blue" para to two main paragraph
 
 --- Explain at least three TDMA based MAC protocol used in Mobile MAC. Disadvantage / Limitations of these protocols (ref the survey on MAC protocol). (Do not compare each other) ---\\ \\
 
@@ -151,11 +159,27 @@ Mobisense \cite{mobisense} is a cross-layer architecture designed for micro-mobi
 We propose a MAC protocol that uses dynamic scheduling to handle the mobile nodes in the network. Each frame is divided into control phase, for managing the mobile nodes, data transfer phase for collecting data from the mobile nodes and routing phase during which the static node forwards the aggregated data to the next node based on an established routing path \cite{aodv}. We employ request-reply mechanism for data transfer which not only improves the reliability of the data transfer but also serves as a means to inform the mobile nodes about their wake up time during the next frame. The primary goal of our protocol design is to improve energy efficiency by increasing the sleep time of the mobile nodes. The request-reply mechanism also ensures that collision does not happen when a mobile node moves from one virtual cluster \cite{smac} to another. The local schedule maintained by each static node in the network, is designed to be flexible that it keeps on changing based on network traffic and the mobility of the neighbours.
 
 
+
 % ---------------------------------------------------------------- %
-\section{Algorithm}
+\section{Proposed Approach}
+\subsection*{Problem Definition with Assumptions}
+\label{prob_def}
+Accommodating mobile sensor nodes in the sensor network introduces a few challenges for the network protocol designers. Due to the rapid movement of mobile nodes, the topology of the entire network changes every instant. Designing a MAC and/or routing protocol for a network with dynamic topology is a challenging task. An efficient routing algorithm in this case, essentially requires efficient medium access, with minimum packet loss. Contention based algorithms increase the network overhead and also the probability of collision is high. Hence, this scenario requires a TDMA based MAC protocol which dynamically adapts to the changes in the mobile node traffic in the neighbourhood.  \\% network traffic?
+% ---------------------------------------------------------------- %
+
+The assumptions made in this paper are listed below:
+\begin{itemize}
+	\item A dense grid deployment of static nodes is available for routing data
+	\item The static nodes possess the ability to aggregate data before forwarding to the base-station
+	\item The communication radius of static and mobile nodes are predetermined and constant
+\end{itemize}
+% ---------------------------------------------------------------- %
+
+% ---------------------------------------------------------------- %
+\subsection{Approach}
 \label{algo}
 
-The first phase of our approach is Network initialization, during which the static nodes in the network exchange timing slots to communicate with each other. This process of offering a TDMA slot to a static node starts from the basestation. It should be noted that none of the static nodes start communication with their mobile neighbours before acquiring a routing slot from their parent. Basestation starts off the process by sending different timing slots to all its \emph{children} i.e., one hop static neighbours. The children randomly choose a timing slot, different from the one offered to them by the basestation and enable their one hop static neighbours(grand children). This process continues until all the nodes acquire a routing slot from their parents. Meanwhile, the nodes which are enabled by their parents, start communicating with their mobile neighbours. Once a mobile node starts receiving data from its neigbours, it starts aggregating the data. This aggregated data is forwarded to its parent during the routing slot offered by its parent, which eventually reaches the basestation. The communication with mobile nodes involves two stages : mobility management and data transfer phase. Each frame in our approach is divided into 4 phases. They are (i) Discovery Request Phase (ii) Discovery Reply Phase (iii) Schedule phase and (iv) Data phase. Each of these 4 phases is explained clearly in the following sections:\\
+The first phase of our approach is Network initialization, during which the static nodes in the network exchange timing slots to communicate with each other. This process of offering a TDMA slot to a static node starts from the base-station. It should be noted that none of the static nodes start communication with their mobile neighbours before acquiring a routing slot from their parent. Base-station starts off the process by sending different timing slots to all its \emph{children} i.e., one hop static neighbours. The children randomly choose a timing slot, different from the one offered to them by the base-station and enable their one hop static neighbours(grand children). This process continues until all the nodes acquire a routing slot from their parents. Meanwhile, the nodes which are enabled by their parents, start communicating with their mobile neighbours. Once a mobile node starts receiving data from its neigbours, it starts aggregating the data. This aggregated data is forwarded to its parent during the routing slot offered by its parent, which eventually reaches the basestation. The communication with mobile nodes involves two stages : mobility management and data transfer phase. Each frame in our approach is divided into 4 phases. They are (i) Discovery Request Phase (ii) Discovery Reply Phase (iii) Schedule phase and (iv) Data phase. Each of these 4 phases is explained clearly in the following sections:\\
 
 \subsection{Discovery Request Phase}
 \label{disc_req_phase}
@@ -181,6 +205,8 @@ From the schedule message, each mobile node acquires its data slot for communica
   \end{center}
   \caption{Time line Showing the Cluster head communication}
 \end{figure}
+
+% Need to redrawn the pic. Circle should be drawn with CH as the centre.
 
 \begin{figure}[h]{} 
 	\label{fig:timing}
@@ -217,13 +243,11 @@ Sample Algorithm
 \end{algorithm}
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Simulation and Results}
-\label{sim}
-stuff thangs.. coraaaaaaal.. stuff thangs.. coraaaaaaal..
-stuff thangs.. coraaaaaaal..  stuff thangs.. coraaaaaaal..
-
 % ------------------------------------------------------- %
-\subsection{Performance Evaluation}         
+\section{Performance Evaluation}         
+\label{sim}
+
+% put graphs and send to me.
 
 Results comes here
 Comparison to be done with Hybrid MAC and Mobi Sense
